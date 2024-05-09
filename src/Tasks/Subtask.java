@@ -2,25 +2,20 @@ package Tasks;
 
 import java.util.Objects;
 public class Subtask extends Task {
-    protected String nameSubtask;
-    protected Status statusSubtask;
-    protected String contentSubtask;
 
-    public Subtask(String nameSubtask, String contentSubtask) {
-        super("", "");
-        this.nameSubtask = nameSubtask;
-        this.contentSubtask = contentSubtask;
-        statusSubtask = Status.NEW;
+    public int subtaskId;
+    public Subtask(String nameSubtask, String contentSubtask, Status status) {
+        super(nameSubtask, contentSubtask, status);
     }
 
     @Override
     public String toString() {
         String result = "";
-        if (nameSubtask == null) { result += ""; }
-        else { result += "\tНазвание - " + nameSubtask; }
-        if (contentSubtask == null) { result += ""; }
-        else { result += "\nСодержание - " + contentSubtask; }
-        result += "\nСтатус - " + statusSubtask;
+        if (nameTask == null) { result += ""; }
+        else { result += "\tНазвание - " + nameTask; }
+        if (contentTask == null) { result += ""; }
+        else { result += "\nСодержание - " + contentTask; }
+        result += "\nСтатус - " + statusTask;
         return result;
     }
 
@@ -29,36 +24,40 @@ public class Subtask extends Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Subtask subtask = (Subtask) o;
-        return Objects.equals(nameSubtask, subtask.nameSubtask) &&
-                statusSubtask == subtask.statusSubtask && Objects.equals(contentSubtask, subtask.contentSubtask);
+        return Objects.equals(nameTask, subtask.nameTask) &&
+                statusTask == subtask.statusTask && Objects.equals(contentTask, subtask.contentTask);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nameSubtask, statusSubtask, contentSubtask);
+        return Objects.hash(nameTask, statusTask, contentTask);
     }
 
     public String getNameSubtask() {
-        return nameSubtask;
+        return nameTask;
     }
 
     public void setNameSubtask(String nameSubtask) {
-        this.nameSubtask = nameSubtask;
+        this.nameTask = nameSubtask;
     }
 
     public Status getStatusSubtask() {
-        return statusSubtask;
+        return statusTask;
     }
 
     public void setStatusSubtask(Status statusSubtask) {
-        this.statusSubtask = statusSubtask;
+        this.statusTask = statusSubtask;
     }
 
     public String getContentSubtask() {
-        return contentSubtask;
+        return contentTask;
     }
 
     public void setContentSubtask(String contentSubtask) {
-        this.contentSubtask = contentSubtask;
+        this.contentTask = contentSubtask;
+    }
+
+    public void setSubtaskId(int subtaskId) {
+        this.subtaskId = subtaskId;
     }
 }
