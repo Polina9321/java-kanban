@@ -4,8 +4,24 @@ import java.util.ArrayList;
 import java.util.Objects;
 public class Epic extends Task {
     protected ArrayList<Subtask> subtaskArrayList = new ArrayList<>();
-    public Epic(String nameEpic, String contentEpic) {
-        super(nameEpic, contentEpic);
+
+
+    public Epic(String nameEpic, String contentEpic, Status status) {
+        super(nameEpic, contentEpic, status);
+    }
+
+    public void deleteSubtask(int... indexes) {
+        for (int index : indexes) {
+            if (id > 1) {
+                id--;
+            }
+            subtaskArrayList.remove(index);
+        }
+    }
+
+    public void deleteAllTasks() {
+        subtaskArrayList.clear();
+        System.out.println("Все задачи в списке удалены.");
     }
 
     public ArrayList<Subtask> getSubtaskArrayList() {
@@ -33,7 +49,7 @@ public class Epic extends Task {
     }
     @Override
     public String toString() {
-        String result = "ID - " + idTask;
+        String result = "ID - " + id;
         if (nameTask == null) { result += ""; }
         else { result += "\nНазвание - " + nameTask; }
         if (contentTask == null) { result += ""; }
