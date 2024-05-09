@@ -5,14 +5,13 @@ import java.util.Objects;
 public class Task {
     protected String nameTask;
     protected String contentTask;
-    protected final int idTask;
     protected Status statusTask;
+    protected int id;
 
-    public Task(String nameTask, String contentTask) {
+    public Task(String nameTask, String contentTask, Status status) {
         this.nameTask = nameTask;
         this.contentTask = contentTask;
-        idTask = hashCode();
-        statusTask = Status.NEW;
+        statusTask = status;
     }
 
     public void setStatusTask(Status statusTask) {
@@ -25,13 +24,31 @@ public class Task {
 
     @Override
     public String toString() {
-        String result = "ID - " + idTask;
-        if (nameTask == null) { result += ""; }
-        else { result += "\nНазвание - " + nameTask; }
-        if (contentTask == null) { result += ""; }
-        else { result += "\nСодержание - " + contentTask; }
+        String result = "ID - " + id;
+        if (nameTask == null) {
+            result += "";
+        } else {
+            result += "\nНазвание - " + nameTask;
+        }
+        if (contentTask == null) {
+            result += "";
+        } else {
+            result += "\nСодержание - " + contentTask;
+        }
         result += "\nСтатус - " + statusTask;
         return result;
+    }
+
+    public String getNameTask() {
+        return nameTask;
+    }
+
+    public String getContentTask() {
+        return contentTask;
+    }
+
+    public int getIdTask() {
+        return id;
     }
 
     @Override
@@ -39,12 +56,12 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return idTask == task.idTask && Objects.equals(nameTask, task.nameTask) && Objects.equals(contentTask, task.contentTask) && statusTask == task.statusTask;
+        return id == task.id && Objects.equals(nameTask, task.nameTask) && Objects.equals(contentTask, task.contentTask) && statusTask == task.statusTask;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nameTask, contentTask, idTask, statusTask);
+        return Objects.hash(nameTask, contentTask, id, statusTask);
     }
 
     public Status getStatusTask() {
@@ -57,5 +74,9 @@ public class Task {
 
     public void setContentTask(String contentTask) {
         this.contentTask = contentTask;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
