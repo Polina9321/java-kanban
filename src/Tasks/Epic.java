@@ -35,16 +35,17 @@ public class Epic extends Task {
         int counter = 0;
         for (Subtask subtask : subtaskArrayList) {
             if (subtask.getStatusSubtask() == Status.DONE) {
-                counter ++;
+                counter++;
+            } else if (subtask.getStatusSubtask() == Status.IN_PROGRESS) {
+                counter = -3;
+                break;
             }
         }
 
         if (counter == subtaskArrayList.size()) {
             setStatusTask(Status.DONE);
-        } else if (counter > 0) {
+        } else if (counter < 0) {
             setStatusTask(Status.IN_PROGRESS);
-        } else {
-            setStatusTask(Status.NEW);
         }
     }
     @Override
