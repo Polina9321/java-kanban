@@ -37,8 +37,15 @@ public class Manager {
         System.out.println("Все задачи в списке удалены.");
     }
 
-    public void deleteTastById(int index) {
-            taskHashMap.remove(index);
+    public void deleteTaskById(int index) {
+        taskHashMap.remove(index);
+    }
+
+
+
+    public void deleteSubtaskById(int indexEpic,int indexSubtask) {
+        Epic epic = (Epic)taskHashMap.get(indexEpic);
+        epic.deleteSubtask(indexSubtask);
     }
 
     public Task getTask(int index) {
@@ -50,7 +57,7 @@ public class Manager {
     }
 
     public  void updateTask(int index, Task task) {
-        deleteTastById(index);
+        deleteTaskById(index);
         taskHashMap.put(index, task);
     }
 
