@@ -10,13 +10,8 @@ public class Epic extends Task {
         super(nameEpic, contentEpic, status);
     }
 
-    public void deleteSubtask(int... indexes) {
-        for (int index : indexes) {
-            if (id > 1) {
-                id--;
-            }
-            subtaskArrayList.remove(index);
-        }
+    public void deleteSubtask(int id) {
+        subtaskArrayList.remove(id);
     }
 
     public void deleteAllTasks() {
