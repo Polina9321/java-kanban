@@ -6,30 +6,31 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 public class Manager {
-    protected int id = 0;
+    protected int idTask = 1;
+    protected int idEpic = 1;
     public HashMap<Integer, Task> taskHashMap = new HashMap<>();
     public HashMap<Integer, Epic> epicHashMap = new HashMap<>();
 
     public int addTask(Task task) {
         if (!taskHashMap.containsValue(task)) {
-            while (taskHashMap.containsKey(id)) {
-                id++;
-                task.setId(id);
+            while (taskHashMap.containsKey(idTask)) {
+                idTask++;
+                task.setId(idTask);
             }
-            taskHashMap.put(id, task);
+            taskHashMap.put(idTask, task);
         }
-        return id;
+        return idTask;
     }
 
     public int addEpic(Epic epic) {
         if (!epicHashMap.containsValue(epic)) {
-            while (epicHashMap.containsKey(id)) {
-                id++;
-                epic.setId(id);
+            while (epicHashMap.containsKey(idEpic)) {
+                idEpic++;
+                epic.setId(idEpic);
             }
-            epicHashMap.put(id, epic);
+            epicHashMap.put(idEpic, epic);
         }
-        return id;
+        return idEpic;
     }
 
     public int addSubtask(Epic epic, Subtask subtask) {
@@ -121,14 +122,6 @@ public class Manager {
             result += "\n\n" + i + "\n" + taskHashMap.get(i);
         }
         return result;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public HashMap<Integer, Task> getTaskHashMap() {
