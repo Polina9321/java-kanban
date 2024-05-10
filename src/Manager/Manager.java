@@ -45,8 +45,8 @@ public class Manager {
         return new ArrayList<>(epicHashMap.values());
     }
 
-    public ArrayList<Subtask> getSubtaskByEpic(Epic epic) {
-        return epic.getSubtaskArrayList();
+    public ArrayList<Subtask> getSubtaskByEpic(int id) {
+        return getEpic(id).getSubtaskArrayList();
     }
     public void deleteTasks() {
         taskHashMap.clear();
@@ -72,10 +72,6 @@ public class Manager {
         return taskHashMap.get(index);
     }
     public Epic getEpic(int index) { return epicHashMap.get(index); }
-
-    public ArrayList<Subtask> getEpicSubtasks(Epic epic) {
-        return new ArrayList<>(epic.getSubtaskArrayList());
-    }
 
     public  void updateTask(int index, Task task) {
         deleteTaskById(index);
