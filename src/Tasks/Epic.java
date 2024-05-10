@@ -14,7 +14,7 @@ public class Epic extends Task {
         subtaskArrayList.remove(id);
     }
 
-    public void deleteAllTasks() {
+    public void deleteAllSubtasks() {
         subtaskArrayList.clear();
         System.out.println("Все задачи в списке удалены.");
     }
