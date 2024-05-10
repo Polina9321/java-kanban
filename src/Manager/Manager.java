@@ -53,13 +53,23 @@ public class Manager {
         System.out.println("Все задачи в списке удалены.");
     }
 
+    public void deleteEpics() {
+        epicHashMap.clear();
+        System.out.println("Все эпики в списке удалены.");
+    }
+
+    public void deleteAllSubtaskByEpic(int index) {
+        getEpic(index).deleteAllSubtasks();
+    }
+
+
     public void deleteTaskById(int index) {
         taskHashMap.remove(index);
     }
 
     public void deleteEpicById(int index) { epicHashMap.remove(index); }
-    public void deleteSubtaskByEpic(Epic epic, int index) {
-        epic.deleteSubtask(index);
+    public void deleteSubtaskByEpic(int id, int index) {
+        getEpic(id).deleteSubtask(index);
     }
 
 
@@ -85,5 +95,29 @@ public class Manager {
             result += "\n\n" + i + "\n" + taskHashMap.get(i);
         }
         return result;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public HashMap<Integer, Task> getTaskHashMap() {
+        return taskHashMap;
+    }
+
+    public void setTaskHashMap(HashMap<Integer, Task> taskHashMap) {
+        this.taskHashMap = taskHashMap;
+    }
+
+    public HashMap<Integer, Epic> getEpicHashMap() {
+        return epicHashMap;
+    }
+
+    public void setEpicHashMap(HashMap<Integer, Epic> epicHashMap) {
+        this.epicHashMap = epicHashMap;
     }
 }
