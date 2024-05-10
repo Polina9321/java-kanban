@@ -19,6 +19,10 @@ public class Subtask extends Task {
         return result;
     }
 
+    public int getSubtaskId() {
+        return subtaskId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
