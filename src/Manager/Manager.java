@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Manager {
     protected int id = 0;
     public HashMap<Integer, Task> taskHashMap = new HashMap<>();
+    public HashMap<Integer, Epic> epicHashMap = new HashMap<>();
 
     public int addTask(Task task) {
         if (!taskHashMap.containsValue(task)) {
@@ -21,12 +22,12 @@ public class Manager {
     }
 
     public int addEpic(Epic epic) {
-        if (!taskHashMap.containsValue(epic)) {
-            while (taskHashMap.containsKey(id)) {
+        if (!epicHashMap.containsValue(epic)) {
+            while (epicHashMap.containsKey(id)) {
                 id++;
                 epic.setId(id);
             }
-            taskHashMap.put(id, epic);
+            epicHashMap.put(id, epic);
         }
         return id;
     }
@@ -40,6 +41,13 @@ public class Manager {
         return new ArrayList<>(taskHashMap.values());
     }
 
+    public ArrayList<Epic> getEpicArrayList() {
+        return new ArrayList<>(epicHashMap.values());
+    }
+
+    public ArrayList<Subtask> getSubtaskByEpic(Epic epic) {
+        return epic.getSubtaskArrayList();
+    }
     public void deleteTasks() {
         taskHashMap.clear();
         System.out.println("Все задачи в списке удалены.");
@@ -59,6 +67,7 @@ public class Manager {
     public Task getTask(int index) {
         return taskHashMap.get(index);
     }
+    public Epic getEpic(int index) { return epicHashMap.get(index); }
 
     public ArrayList<Subtask> getEpicSubtasks(Epic epic) {
         return new ArrayList<>(epic.getSubtaskArrayList());
