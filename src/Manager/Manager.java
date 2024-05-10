@@ -83,9 +83,35 @@ public class Manager {
     }
     public Epic getEpic(int index) { return epicHashMap.get(index); }
 
-    public  void updateTask(int index, Task task) {
-        deleteTaskById(index);
-        taskHashMap.put(index, task);
+    public  void updateTask(Task task) {
+        int index = task.getId();
+        if(taskHashMap.containsKey(index)){
+            task.setStatusTask(Status.DONE);
+            deleteTaskById(index);
+            taskHashMap.put(index, task);
+        }
+
+    }
+
+    public  void updateEpic(Epic epic) {
+        int index = epic.getId();
+        if(epicHashMap.containsKey(index)){
+            epic.checkStatusSubtask();
+            deleteTaskById(index);
+            epicHashMap.put(index, epic);
+        }
+    }
+
+    public  void updateSubtask(Epic epic, Subtask subtask) {
+        String name = subtask.getNameSubtask();
+        ArrayList<Subtask> subtaskList = epic.getSubtaskArrayList();
+
+        if(subtaskList.contains(name)){
+            subtask.setStatusSubtask(Status.DONE);
+            deleteSubtaskById(epic.getId(), subtask.getSubtaskId());
+            subtaskList.add(subtask);
+            epic.checkStatusSubtask();
+        }
     }
 
     @Override
