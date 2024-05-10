@@ -9,14 +9,33 @@ public class Manager {
     protected int id = 0;
     public HashMap<Integer, Task> taskHashMap = new HashMap<>();
 
-    public void addTask(Task o) {
-        if (!taskHashMap.containsValue(o)) {
+    public int addTask(Task task) {
+        if (!taskHashMap.containsValue(task)) {
             while (taskHashMap.containsKey(id)) {
                 id++;
-                o.setId(id);
+                task.setId(id);
             }
-            taskHashMap.put(id, o);
+            taskHashMap.put(id, task);
         }
+        return id;
+    }
+
+    public int addEpic(Epic epic) {
+        if (!taskHashMap.containsValue(epic)) {
+            while (taskHashMap.containsKey(id)) {
+                id++;
+                epic.setId(id);
+            }
+            taskHashMap.put(id, epic);
+        }
+
+
+        return id;
+    }
+
+    public int addSubtask(Epic epic, Subtask subtask) {
+        epic.addSubtask(subtask);
+        return subtask.getSubtaskId();
     }
 
     public void addTask(Epic epic, Subtask... subtasks) {
