@@ -3,7 +3,7 @@ package Tasks;
 import java.util.Objects;
 public class Subtask extends Task {
 
-    public int subtaskId;
+    public int subtaskId = 1;
     public Subtask(String nameSubtask, String contentSubtask, Status status) {
         super(nameSubtask, contentSubtask, status);
     }
