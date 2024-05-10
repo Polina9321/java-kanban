@@ -47,9 +47,6 @@ public class Task {
         return contentTask;
     }
 
-    public int getIdTask() {
-        return id;
-    }
 
     @Override
     public boolean equals(Object o) {
