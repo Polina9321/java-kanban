@@ -57,6 +57,10 @@ public class Manager {
         taskHashMap.remove(index);
     }
 
+    public void deleteEpicById(int index) { epicHashMap.remove(index); }
+    public void deleteSubtaskByEpic(Epic epic, int index) {
+        epic.deleteSubtask(index);
+    }
 
 
     public void deleteSubtaskById(int indexEpic,int indexSubtask) {
