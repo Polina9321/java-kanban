@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 public class Manager {
-    protected int idTask = 1;
+    protected int idTask = 0;
     private HashMap<Integer, Task> taskHashMap = new HashMap<>();
     private HashMap<Integer, Epic> epicHashMap = new HashMap<>();
     private HashMap<Integer, Subtask> subtaskHashMap = new HashMap<>();
