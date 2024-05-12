@@ -44,6 +44,10 @@ public class Manager {
         return new ArrayList<>(epicHashMap.values());
     }
 
+    public ArrayList<Task> getSubtaskArrayList() {
+        return new ArrayList<>(subtaskHashMap.values());
+    }
+
     public ArrayList<Subtask> getSubtaskByEpic(int id) {
         return getEpic(id).getSubtaskArrayList();
     }
@@ -54,7 +58,16 @@ public class Manager {
 
     public void deleteEpics() {
         epicHashMap.clear();
+        subtaskHashMap.clear();
         System.out.println("Все эпики в списке удалены.");
+    }
+
+    public void deleteAllSubtasks(){
+        subtaskHashMap.clear();
+        for (Epic epic : epicHashMap.values()) {
+            epic.deleteAllSubtasks();
+            epic.checkStatusSubtask();
+        }
     }
 
     public void deleteAllSubtaskByEpic(int index) {
