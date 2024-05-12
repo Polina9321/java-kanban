@@ -136,20 +136,4 @@ public class Manager {
         }
         return result;
     }
-
-    public HashMap<Integer, Task> getTaskHashMap() {
-        return taskHashMap;
-    }
-
-    public void setTaskHashMap(HashMap<Integer, Task> taskHashMap) {
-        this.taskHashMap = taskHashMap;
-    }
-
-    public HashMap<Integer, Epic> getEpicHashMap() {
-        return epicHashMap;
-    }
-
-    public void setEpicHashMap(HashMap<Integer, Epic> epicHashMap) {
-        this.epicHashMap = epicHashMap;
-    }
 }
