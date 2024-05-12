@@ -28,6 +28,7 @@ public class Manager {
             subtask.setId(++idTask);
             subtaskHashMap.put(idTask, subtask);
             getEpic(subtask.epicId).addSubtask(subtask);
+            getEpic(subtask.epicId).checkStatusSubtask();
             return idTask;
         } else {
             return -1;
