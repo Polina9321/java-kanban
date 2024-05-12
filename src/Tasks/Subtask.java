@@ -2,7 +2,6 @@ package Tasks;
 
 import java.util.Objects;
 public class Subtask extends Task {
-    public int subtaskId;
     public int epicId;
     public Subtask(int epicId, String nameSubtask, String contentSubtask, Status status) {
         super(nameSubtask, contentSubtask, status);
@@ -20,10 +19,6 @@ public class Subtask extends Task {
         return result;
     }
 
-    public int getSubtaskId() {
-        return subtaskId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -36,5 +31,13 @@ public class Subtask extends Task {
     @Override
     public int hashCode() {
         return Objects.hash(nameTask, statusTask, contentTask);
+    }
+
+    public int getEpicId() {
+        return epicId;
+    }
+
+    public void setEpicId(int epicId) {
+        this.epicId = epicId;
     }
 }
