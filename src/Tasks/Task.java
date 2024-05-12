@@ -6,19 +6,12 @@ public class Task {
     protected String nameTask;
     protected String contentTask;
     protected Status statusTask;
+    protected int id;
 
     public Task(String nameTask, String contentTask, Status status) {
         this.nameTask = nameTask;
         this.contentTask = contentTask;
         statusTask = status;
-    }
-
-    public void setStatusTask(Status statusTask) {
-        if (statusTask == Status.DONE || statusTask == Status.IN_PROGRESS || statusTask == Status.NEW) {
-            System.out.println("Статус не найден.");
-        } else {
-            this.statusTask = statusTask;
-        }
     }
 
     @Override
@@ -38,15 +31,6 @@ public class Task {
         return result;
     }
 
-    public String getNameTask() {
-        return nameTask;
-    }
-
-    public String getContentTask() {
-        return contentTask;
-    }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,12 +44,28 @@ public class Task {
         return Objects.hash(nameTask, contentTask, id, statusTask);
     }
 
+    public void setStatusTask(Status statusTask) {
+        if (statusTask == Status.DONE || statusTask == Status.IN_PROGRESS || statusTask == Status.NEW) {
+            System.out.println("Статус не найден.");
+        } else {
+            this.statusTask = statusTask;
+        }
+    }
+
     public Status getStatusTask() {
         return statusTask;
     }
 
+    public String getNameTask() {
+        return nameTask;
+    }
+
     public void setNameTask(String nameTask) {
         this.nameTask = nameTask;
+    }
+
+    public String getContentTask() {
+        return contentTask;
     }
 
     public void setContentTask(String contentTask) {
