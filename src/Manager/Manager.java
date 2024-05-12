@@ -70,16 +70,19 @@ public class Manager {
         }
     }
 
-    public void deleteAllSubtaskByEpic(int index) {
-        getEpic(index).deleteAllSubtasks();
-    }
-
-
     public void deleteTaskById(int index) {
         taskHashMap.remove(index);
     }
 
-    public void deleteEpicById(int index) { epicHashMap.remove(index); }
+    public void deleteEpicById(int index) {
+        for (int key : subtaskHashMap.keySet()) {
+            if (subtaskHashMap.get(key).epicId == index) {
+                subtaskHashMap.remove(key);
+            }
+        }
+        epicHashMap.remove(index);
+    }
+
     public void deleteSubtaskByEpic(int id, Subtask subtask) {
         getEpic(id).deleteSubtask(subtask);
     }
