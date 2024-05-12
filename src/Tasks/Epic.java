@@ -26,6 +26,11 @@ public class Epic extends Task {
         subtaskArrayList.add(subtask);
     }
 
+    public void updateSubtask(Subtask subtask) {
+        int index = subtaskArrayList.indexOf(subtask);
+        subtaskArrayList.add(index, subtask);
+    }
+
     public void checkStatusSubtask() {
         int counter = 0;
         if (subtaskArrayList.size() == 0) {
