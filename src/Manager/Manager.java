@@ -7,8 +7,9 @@ import java.util.ArrayList;
 
 public class Manager {
     protected int idTask = 1;
-    public HashMap<Integer, Task> taskHashMap = new HashMap<>();
-    public HashMap<Integer, Epic> epicHashMap = new HashMap<>();
+    private HashMap<Integer, Task> taskHashMap = new HashMap<>();
+    private HashMap<Integer, Epic> epicHashMap = new HashMap<>();
+    private HashMap<Integer, Subtask> subtaskHashMap = new HashMap<>();
 
     public int addTask(Task task) {
         if (!taskHashMap.containsValue(task)) {
@@ -33,9 +34,16 @@ public class Manager {
     }
 
     public int addSubtask(Epic epic, Subtask subtask) {
+        if (!subtaskHashMap.containsValue(subtask)) {
+            while (subtaskHashMap.containsKey(idTask)) {
+                idTask++;
+                subtask.setId(idTask);
+            }
+            subtaskHashMap.put(idTask, subtask);
+        }
         epic.addSubtask(subtask);
         subtask.setId(++idTask);
-        return subtask.getId();
+        return idTask;
     }
 
     public ArrayList<Task> getTaskArrayList() {
