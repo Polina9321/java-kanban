@@ -6,12 +6,12 @@ public class Epic extends Task {
     protected ArrayList<Subtask> subtaskArrayList = new ArrayList<>();
 
 
-    public Epic(String nameEpic, String contentEpic, Status status) {
-        super(nameEpic, contentEpic, status);
+    public Epic(String nameEpic, String contentEpic) {
+        super(nameEpic, contentEpic, Status.NEW);
     }
 
-    public void deleteSubtask(int id) {
-        subtaskArrayList.remove(id);
+    public void deleteSubtask(Subtask subtask) {
+        subtaskArrayList.remove(subtask);
     }
 
     public void deleteAllSubtasks() {
@@ -28,19 +28,23 @@ public class Epic extends Task {
 
     public void checkStatusSubtask() {
         int counter = 0;
-        for (Subtask subtask : subtaskArrayList) {
-            if (subtask.getStatusSubtask() == Status.DONE) {
-                counter++;
-            } else if (subtask.getStatusSubtask() == Status.IN_PROGRESS) {
-                counter = -3;
-                break;
+        if (subtaskArrayList.size() == 0) {
+            setStatusTask(Status.NEW);
+        } else {
+            for (Subtask subtask : subtaskArrayList) {
+                if (subtask.getStatusTask() == Status.DONE) {
+                    counter++;
+                } else if (subtask.getStatusTask() == Status.IN_PROGRESS) {
+                    counter = -3;
+                    break;
+                }
             }
-        }
 
-        if (counter == subtaskArrayList.size()) {
-            setStatusTask(Status.DONE);
-        } else if (counter < 0) {
-            setStatusTask(Status.IN_PROGRESS);
+            if (counter == subtaskArrayList.size()) {
+                setStatusTask(Status.DONE);
+            } else if (counter < 0) {
+                setStatusTask(Status.IN_PROGRESS);
+            }
         }
     }
     @Override
