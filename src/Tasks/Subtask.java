@@ -2,10 +2,11 @@ package Tasks;
 
 import java.util.Objects;
 public class Subtask extends Task {
-
-    public int subtaskId = 1;
-    public Subtask(String nameSubtask, String contentSubtask, Status status) {
+    public int subtaskId;
+    public int epicId;
+    public Subtask(int epicId, String nameSubtask, String contentSubtask, Status status) {
         super(nameSubtask, contentSubtask, status);
+        this.epicId = epicId;
     }
 
     @Override
@@ -35,33 +36,5 @@ public class Subtask extends Task {
     @Override
     public int hashCode() {
         return Objects.hash(nameTask, statusTask, contentTask);
-    }
-
-    public String getNameSubtask() {
-        return nameTask;
-    }
-
-    public void setNameSubtask(String nameSubtask) {
-        this.nameTask = nameSubtask;
-    }
-
-    public Status getStatusSubtask() {
-        return statusTask;
-    }
-
-    public void setStatusSubtask(Status statusSubtask) {
-        this.statusTask = statusSubtask;
-    }
-
-    public String getContentSubtask() {
-        return contentTask;
-    }
-
-    public void setContentSubtask(String contentSubtask) {
-        this.contentTask = contentSubtask;
-    }
-
-    public void setSubtaskId(int subtaskId) {
-        this.subtaskId = subtaskId;
     }
 }
