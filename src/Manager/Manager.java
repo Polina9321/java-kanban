@@ -84,16 +84,21 @@ public class Manager {
     }
 
     public void deleteSubtaskById(int index) {
-        Subtask subtask = subtaskHashMap.get(index);
-        Epic epic = epicHashMap.get(subtask.epicId);
-        epic.deleteSubtask(subtask);
+        Epic epic = epicHashMap.get(getSubtask(index).epicId);
+        epic.deleteSubtask(getSubtask(index));
         epic.checkStatusSubtask();
     }
 
     public Task getTask(int index) {
         return taskHashMap.get(index);
     }
-    public Epic getEpic(int index) { return epicHashMap.get(index); }
+    public Epic getEpic(int index) {
+        return epicHashMap.get(index);
+    }
+
+    public Subtask getSubtask(int index) {
+        return subtaskHashMap.get(index);
+    }
 
     public  void updateTask(Task task) {
         int index = task.getId();
