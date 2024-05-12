@@ -23,11 +23,16 @@ public class Manager {
         return idTask;
     }
 
-    public int addSubtask(Epic epic, Subtask subtask) {
-        subtask.setId(++idTask);
-        subtaskHashMap.put(idTask, subtask);
-        epic.addSubtask(subtask);
-        return idTask;
+    public int addSubtask(Subtask subtask) {
+        if (epicHashMap.containsValue(getEpic(subtask.epicId))) {
+            subtask.setId(++idTask);
+            subtaskHashMap.put(idTask, subtask);
+            getEpic(subtask.epicId).addSubtask(subtask);
+            return idTask;
+        } else {
+            return -1;
+        }
+
     }
 
     public ArrayList<Task> getTaskArrayList() {
