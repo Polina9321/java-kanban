@@ -90,9 +90,12 @@ public class Manager {
     }
 
     public void deleteSubtaskById(int index) {
-        Epic epic = epicHashMap.get(subtaskHashMap.get(index).epicId);
-        epic.deleteSubtask(subtaskHashMap.get(index));
-        epic.checkStatusSubtask();
+        if (subtaskHashMap.containsKey(index)) {
+            Epic epic = epicHashMap.get(subtaskHashMap.get(index).epicId);
+            epic.deleteSubtask(subtaskHashMap.get(index));
+            epic.checkStatusSubtask();
+            subtaskHashMap.remove(index);
+        }
     }
 
     public Task getTask(int index) {
