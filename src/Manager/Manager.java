@@ -24,11 +24,11 @@ public class Manager {
     }
 
     public int addSubtask(Subtask subtask) {
-        if (epicHashMap.containsValue(getEpic(subtask.epicId))) {
+        if (epicHashMap.containsKey(subtask.epicId)) {
             subtask.setId(++idTask);
             subtaskHashMap.put(idTask, subtask);
-            getEpic(subtask.epicId).addSubtask(subtask);
-            getEpic(subtask.epicId).checkStatusSubtask();
+            epicHashMap.get(subtask.epicId).addSubtask(subtask);
+            epicHashMap.get(subtask.epicId).checkStatusSubtask();
             return idTask;
         } else {
             return -1;
@@ -49,7 +49,13 @@ public class Manager {
     }
 
     public ArrayList<Subtask> getSubtaskByEpic(int id) {
-        return getEpic(id).getSubtaskArrayList();
+        if (epicHashMap.containsKey(id)) {
+            return epicHashMap.get(id).getSubtaskArrayList();
+        } else {
+            ArrayList<Subtask> emptiness = new ArrayList<>();
+            return emptiness;
+        }
+
     }
     public void deleteTasks() {
         taskHashMap.clear();
