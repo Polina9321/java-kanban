@@ -81,17 +81,17 @@ public class Manager {
     }
 
     public void deleteEpicById(int index) {
-        for (int key : subtaskHashMap.keySet()) {
-            if (subtaskHashMap.get(key).epicId == index) {
-                subtaskHashMap.remove(key);
+        if (epicHashMap.containsKey(index)) {
+            for (Subtask subtask : epicHashMap.get(index).getSubtaskArrayList()) {
+                subtaskHashMap.remove(subtask.getId());
             }
+            epicHashMap.remove(index);
         }
-        epicHashMap.remove(index);
     }
 
     public void deleteSubtaskById(int index) {
-        Epic epic = epicHashMap.get(getSubtask(index).epicId);
-        epic.deleteSubtask(getSubtask(index));
+        Epic epic = epicHashMap.get(subtaskHashMap.get(index).epicId);
+        epic.deleteSubtask(subtaskHashMap.get(index));
         epic.checkStatusSubtask();
     }
 
