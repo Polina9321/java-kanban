@@ -131,7 +131,7 @@ public class Manager {
         if (oldSubtask != null) {
             if (subtask.epicId == oldSubtask.epicId) {
                 subtaskHashMap.put(index, subtask);
-                epicHashMap.get(index).checkStatusSubtask();
+                epicHashMap.get(subtask.epicId).checkStatusSubtask();
             }
         }
     }
