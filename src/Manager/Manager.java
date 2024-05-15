@@ -128,11 +128,10 @@ public class Manager {
     public void updateSubtask(Subtask subtask) {
         int index = subtask.getId();
         Subtask oldSubtask = subtaskHashMap.get(index);
-        if (subtaskHashMap.containsValue(subtask)) {
+        if (oldSubtask != null) {
             if (subtask.epicId == oldSubtask.epicId) {
                 subtaskHashMap.put(index, subtask);
-                updateTask(subtask);
-                getEpic(subtask.epicId).checkStatusSubtask();
+                epicHashMap.get(index).checkStatusSubtask();
             }
         }
     }
