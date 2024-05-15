@@ -32,22 +32,24 @@ public class Epic extends Task {
     }
 
     public void checkStatusSubtask() {
-        int counter = 0;
+        int counterDone = 0;
+        int counterNew = 0;
         if (subtaskArrayList.size() == 0) {
             setStatusTask(Status.NEW);
         } else {
             for (Subtask subtask : subtaskArrayList) {
                 if (subtask.getStatusTask() == Status.DONE) {
-                    counter++;
-                } else if (subtask.getStatusTask() == Status.IN_PROGRESS) {
-                    counter = -3;
-                    break;
+                    counterDone++;
+                } else if (subtask.getStatusTask() == Status.NEW) {
+                    counterNew++;
                 }
             }
 
-            if (counter == subtaskArrayList.size()) {
+            if (counterDone == subtaskArrayList.size()) {
                 setStatusTask(Status.DONE);
-            } else if (counter < 0) {
+            } else if (counterNew == subtaskArrayList.size()) {
+                setStatusTask(Status.NEW);
+            } else {
                 setStatusTask(Status.IN_PROGRESS);
             }
         }
